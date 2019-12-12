@@ -3,11 +3,13 @@
 CodebaseHQ API doesn't provide an SDK for python instead it provide and API.
 This module contains methods for accessing some of those API calls.
 
-Usage example:
-from CodeBaseAPI import CodeBaseAPI
-codebase_api = CodeBaseAPI(account_name='xxx', username='xxx', api_key='xxx')
-# Returns all project details
-all_projects = codebase_api.get_all_projects()
+### Usage example:
+```
+>>> from CodeBaseAPI import CodeBaseAPI
+>>> codebase_api = CodeBaseAPI(account_name='xxx', username='xxx', api_key='xxx')
+>>> res = codebase_api.get_all_projects()
+>>> print(res.content)
+```
 """
 from HttpClient import HttpClient
 
@@ -27,10 +29,9 @@ class CodeBaseAPI:
     def __init__(self, account_name, username, api_key):
         """ Constructor for CodeBaseAPI class.
 
-        -
-        - This class requires account_name, username, api_key parameters to be passed
+        * This class requires account_name, username, api_key parameters to be passed
             in the constructor.
-        - To get these credentials, click the Settings icon in the top-right of your
+        * To get these credentials, click the Settings icon in the top-right of your
             Codebase HQ page (the one that looks like a wrench) and then click 'My Profile'.
             Go to the 'API Credentials' section at the bottom of the page
 
@@ -38,9 +39,6 @@ class CodeBaseAPI:
             account_name: Account name of the CodebaseHQ user
             username: Username of the CodebaseHQ user
             api_key: API Key of the CodebaseHQ user
-
-        Returns:
-            None
 
         Raises:
             CredentialError: when any on of the input params are empty
@@ -85,10 +83,12 @@ class CodeBaseAPI:
     def get_all_projects(self):
         """Gets all the projects details
 
-        Makes an HTTP GET request to the /projects endpoint to get all project data
-        Api URL: https://api3.codebasehq.com/projects
-        Doc Link: https://support.codebasehq.com/kb/projects
+        * Makes an HTTP GET request to the /projects endpoint to get all project data.
+        * API URL: https://api3.codebasehq.com/projects
+        * [Documentation Link](https://support.codebasehq.com/kb/projects)
+        
         Sample Output:
+        ```
         <projects type="array">
             <project>
                 <group-id type="integer" nil="true"></group-id>
@@ -107,21 +107,13 @@ class CodeBaseAPI:
             ...
             </project>
         </projects>
-
-        Args:
-            None
-
-        Returns:
-
-
-        Raises:
-            Error when there is an error
+        ```
         """
         response = self.__http.get(
             endpoint=self.__endpoints['all_projects'],
-            header=self.__get_common_headers(),
+            headers=self.__get_common_headers(),
         )
-        print(response.text)
+        return response
 
     def __get_common_headers(self):
         """Gets common header to be sent with the HTTP request object
