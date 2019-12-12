@@ -1,0 +1,4 @@
+Command:
+pdoc --html -o ./documentation .
+
+pdoc3 Link: https://pdoc3.github.io/pdoc/

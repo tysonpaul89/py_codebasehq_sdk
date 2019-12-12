@@ -106,7 +106,6 @@ venv.bak/
 # IDE
 .vscode/
 .history/
-pdoc_command
 
 # Custom
 *.ipynb

@@ -6,7 +6,6 @@ This module contains methods for accessing some of those API calls.
 Usage example:
 from CodeBaseAPI import CodeBaseAPI
 codebase_api = CodeBaseAPI(account_name='xxx', username='xxx', api_key='xxx')
-# Returns all project details
 all_projects = codebase_api.get_all_projects()
 """
 # Ignores env/* directory when the pdoc3 generates documentation.
